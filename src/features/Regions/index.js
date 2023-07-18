@@ -25,7 +25,7 @@ export default Regions = () => {
       />
       <Button
         title="Create Region"
-        onPress={() => navigate("RegionCreateUpdate", { update: false })}
+        onPress={() => navigate("RegionCreateUpdate")}
       />
     </View>
   );
