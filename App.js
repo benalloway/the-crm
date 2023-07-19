@@ -1,14 +1,12 @@
 import {
-  RegionsContext,
-  RegionsDispatchContext,
-  RegionsProvider,
-} from "./src/context/RegionsContext";
-import Navigation from "./src/navigation";
+  CustomersProvider,
+} from "./src/context/CustomersContext";
+import Navigation from "./src/navigation/navigation";
 
 export default function App() {
   return (
-    <RegionsProvider>
+    <CustomersProvider>
       <Navigation />
-    </RegionsProvider>
+    </CustomersProvider>
   );
 }

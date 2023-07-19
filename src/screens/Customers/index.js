@@ -1,5 +1,5 @@
-import Customers from "../../features/Customers";
+import CustomerList from "../../features/Customers/CustomerList";
 
-export default CustomersScreen = ({ region }) => {
-  return <Customers region={region} />;
+export default CustomersScreen = () => {
+  return <CustomerList />;
 };
