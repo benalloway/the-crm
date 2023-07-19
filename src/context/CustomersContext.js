@@ -60,6 +60,11 @@ export const AVAILABLE_REGIONS = {
   SouthEast: "South East",
 };
 
+export const CONTACT_STATUSES = {
+  Active: "Active",
+  Inacvtive: "Inactive",
+}
+
 let initialCustomers = []
 const seed = () => {
   for(let i = 0; i< 100; i++) {
@@ -67,7 +72,8 @@ const seed = () => {
       name: faker.person.fullName(),
       id: faker.number.int(),
       job: faker.person.jobTitle(),
-      region: faker.helpers.arrayElement(Object.values(AVAILABLE_REGIONS))
+      region: faker.helpers.arrayElement(Object.values(AVAILABLE_REGIONS)),
+      status: faker.helpers.arrayElement(Object.values(CONTACT_STATUSES))
     })
   }
 }
