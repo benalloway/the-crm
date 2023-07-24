@@ -64,21 +64,12 @@ export const useEditCustomerStatus = () => {
   return useSelector((state) => state.customer.edit.status);
 };
 
-export const useDeleteCustomer = (customerID) => {
-  const dispatch = useDispatch();
-  const status = useEditCustomerStatus();
-
-  return {
-    status,
-    onSubmit: () => {
-      console.log("Dispatching DELETE_CUSTOMER action");
-      dispatch(actions.deleteCustomer(customerID));
-    },
-  };
-};
-
 export const useListCustomers = (region = null) => {
-  if(region) return useSelector((state) => state.customer.list.customers.filter(c => c.region === region));
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(actions.loadCustomers());
+  }, [dispatch])
 
   return useSelector((state) => state.customer.list.customers);
 };

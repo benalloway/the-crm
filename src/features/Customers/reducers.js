@@ -20,9 +20,6 @@ const initialState = {
   edit: {
     status: PENDING,
   },
-  delete: {
-    status: PENDING,
-  },
   form: {
     fields: {
       name: null,
@@ -54,9 +51,6 @@ const reducers = {
   editCustomer: (state, { payload }) => {
     state.edit.status = REQUESTING;
   },
-  deleteCustomer: (state, { payload }) => {
-    state.delete.status = REQUESTING;
-  },
   setForm: (state, { payload }) => {
     const customer = state.list.customers.find((a) => (a.id = payload));
     if (customer) {
@@ -79,20 +73,6 @@ const reducers = {
   editCustomerStatus: (state, { payload }) => {
     state.edit = payload;
   },
-  deleteCustomerResult: (state, { payload }) => {
-    state.delete.status = SUCCESS;
-    state.list.customers = payload;
-    state.form.fields = initialState.form.fields;
-    state.delete = initialState.delete;
-  },
-  deleteCustomerError: (state) => {
-    state.delete.status = ERROR;
-    state.error.message = payload;
-    state.form.fields = initialState.form.fields;
-  },
-  deleteCustomerStatus: (state, { payload }) => {
-    state.delete = payload;
-  },
   setFormField: (state, { payload }) => {
     const current = state.form.fields;
     const { field, value } = payload;
@@ -103,6 +83,12 @@ const reducers = {
     };
 
     state.form.fields = fields;
+  },
+  loadCustomers: (state, { payload }) => {
+    
+  },
+  loadResult: (state, { payload }) => {
+    state.list.customers = payload;
   },
 };
 
@@ -121,11 +107,9 @@ export const {
   editCustomerResult,
   editCustomerError,
   editCustomerStatus,
-  deleteCustomer,
-  deleteCustomerResult,
-  deleteCustomerError,
-  deleteCustomerStatus,
   setFormField,
+  loadCustomers,
+  loadResult
 } = customerSlice.actions;
 
 export default customerSlice.reducer;

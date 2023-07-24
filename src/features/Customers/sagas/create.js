@@ -3,6 +3,8 @@ import uuid from 'react-native-uuid';
 
 
 import * as actions from '../reducers'
+import { set } from '../../../utilities/asyncStorage';
+import { newAnimalNotification } from '../../../utilities/notifications';
 
 export function* watchCreateCustomer() {
     yield takeLatest(actions.createCustomer.toString(), takeCreateCustomer)
@@ -19,6 +21,8 @@ export function* takeCreateCustomer() {
         }
 
         const result = [customer, ...customers]
+
+        yield set('CUSTOMERS_KEY', result)
 
         yield put(actions.createCustomerResult(result))
     } catch (error) {

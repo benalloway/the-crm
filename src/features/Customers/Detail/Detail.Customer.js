@@ -3,20 +3,14 @@ import { View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
 import { IconButton, Text } from "react-native-paper";
-import { useViewFields, useDeleteCustomer } from "../hooks";
+import { useViewFields } from "../hooks";
 
 export const DetailCustomer = () => {
   const { params } = useRoute();
-  const { navigate, setOptions, goBack } = useNavigation();
+  const { navigate, setOptions } = useNavigation();
 
   const { fields } = useViewFields(params.id);
-  const { onSubmit } = useDeleteCustomer(params.id);
   const { name, job, region, id } = fields;
-
-  const handleDelete = () => {
-    onSubmit();
-    goBack();
-  };
 
   useEffect(() => {
     setOptions({
@@ -26,7 +20,6 @@ export const DetailCustomer = () => {
             icon="pencil"
             onPress={() => navigate("CustomerEdit", { id: params.id })}
           />
-          <IconButton icon="trash-can" iconColor="red" onPress={handleDelete} />
         </View>
       ),
     });
