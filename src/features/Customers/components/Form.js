@@ -1,8 +1,9 @@
 import { View } from "react-native";
-import { Button, IconButton, TextInput } from "react-native-paper";
+import { IconButton, TextInput } from "react-native-paper";
 import SelectDropdown from "react-native-select-dropdown";
 
 import { useUpdateFields } from "../hooks";
+import Button from "../../../components/Button";
 import { AVAILABLE_REGIONS, PENDING, INPROGRESS } from "../../../utilities/helpers";
 
 export const Form = ({ handleSubmit, status, customerId }) => {
@@ -56,8 +57,6 @@ export const Form = ({ handleSubmit, status, customerId }) => {
       />
 
       <Button
-        style={{ marginTop: 16, width: "75%", alignSelf: "center" }}
-        mode="contained"
         onPress={handleSubmit}
         disabled={status !== PENDING && status !== INPROGRESS}
       >
