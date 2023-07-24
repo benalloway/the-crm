@@ -1,11 +1,11 @@
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import styles from "./styles";
-import { AVAILABLE_REGIONS } from "../../context/CustomersContext";
-import ListItem from "../../components/ListItem";
+import styles from "../styles";
+import { AVAILABLE_REGIONS } from "../../../utilities/helpers";
+import ListItem from "../../../components/ListItem";
 
-export default Regions = () => {
+export const ListRegion = () => {
   const {navigate} = useNavigation();
   
   return (

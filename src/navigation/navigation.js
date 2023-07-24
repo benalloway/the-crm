@@ -2,8 +2,8 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import WelcomeScreen from "../screens/Welcome";
-import RegionsScreen from "../screens/Regions";
+import WelcomeScreen from "./screens/Welcome";
+import { RegionsScreen } from "./screens/Regions/List.Region.Screen";
 import { ListCustomerScreen } from "./screens/Customers/List.Customer.Screen";
 import { DetailCustomerScreen } from "./screens/Customers/Detail.Customer.Screen";
 import { EditCustomerScreen } from "./screens/Customers/Edit.Customer.Screen";
@@ -27,7 +27,7 @@ const StackScreen = () => {
               onPress={() => navigate("CustomerEdit")}
             />
           ),
-          unmountOnBlur: true
+          unmountOnBlur: true,
         }}
         component={RegionsScreen}
       />

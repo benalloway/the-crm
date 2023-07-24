@@ -1,9 +1,8 @@
-// import {
-//   CustomersProvider,
-// } from "./src/context/CustomersContext";
-import { store } from "./src/store";
+import initializeStore from './src/store'
 import { Provider } from "react-redux";
 import Navigation from "./src/navigation/navigation";
+
+const store = initializeStore()
 
 export default function App() {
   return (

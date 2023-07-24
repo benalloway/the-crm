@@ -10,8 +10,3 @@ export const AVAILABLE_REGIONS = {
   SouthWest: "South West",
   SouthEast: "South East",
 };
-
-export const CONTACT_STATUSES = {
-  Active: "Active",
-  Inacvtive: "Inactive",
-};

@@ -1,65 +1,25 @@
-import { Text, View, ScrollView } from "react-native";
+import { View } from "react-native";
 import { Button, IconButton, TextInput } from "react-native-paper";
-import {
-  AVAILABLE_REGIONS,
-  useCustomers,
-  useCustomersDispatch,
-} from "../../../context/CustomersContext";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import SelectDropdown from "react-native-select-dropdown";
 
+import { useCreateCustomerStatus, useNewCustomer, useUpdateFields } from "../hooks";
+import { AVAILABLE_REGIONS, INPROGRESS, PENDING } from "../../../utilities/helpers";
 import styles from "../styles";
-import { faker } from "@faker-js/faker";
 
 export const NewCustomer = () => {
-  const customers = useCustomers();
-  const dispatch = useCustomersDispatch();
-  const { params } = useRoute();
   const { goBack } = useNavigation();
-  const { setOptions } = useNavigation();
 
-  const [state, setState] = useState({
-    name: "",
-    id: -1,
-    job: "",
-    region: "",
-  });
-  const [isCreate, setIsCreate] = useState(true);
+  const {onSubmit} = useNewCustomer();
+  const status = useCreateCustomerStatus();
+
+  const {fields, setFormField} = useUpdateFields(null)
+  const { name, job, region } = fields;
 
   const handleSave = () => {
-    if (isCreate) {
-      dispatch({
-        type: "created",
-        customer: {...state, id: faker.number.int()}
-      });
-    } else {
-      dispatch({
-        type: "edited",
-        customer: state,
-      });
-    }
+    onSubmit();
     goBack();
   };
-
-  // if id => Update
-  useEffect(() => {
-    if (params?.id) {
-      setOptions({
-        title: "Edit Customer",
-      });
-      setState(customers?.find((customer) => customer.id === params.id));
-      setIsCreate(false);
-    } else {
-      setIsCreate(true);
-      setState({
-        name: "",
-        id: Math.random(),
-        job: "",
-        region: params?.region || "",
-      });
-    }
-  }, [params]);
 
   return (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -67,24 +27,22 @@ export const NewCustomer = () => {
         <TextInput
           mode="outlined"
           label="Name"
-          value={state.name}
-          onChangeText={(text) => setState((prev) => ({ ...prev, name: text }))}
+          value={name}
+          onChangeText={(text) => setFormField("name", text)}
         />
         <TextInput
           mode="outlined"
           label="job"
-          onChangeText={(text) =>
-            setState((prev) => ({ ...prev, job: text }))
-          }
-          value={state.job}
+          onChangeText={(text) => setFormField("job", text)}
+          value={job}
         />
 
         <SelectDropdown
           data={Object.values(AVAILABLE_REGIONS)}
           defaultButtonText="Select a Region"
-          defaultValue={state.region}
+          defaultValue={region}
           onSelect={(selectedItem, index) =>
-            setState((prev) => ({ ...prev, region: selectedItem }))
+            setFormField("region", selectedItem)
           }
           buttonTextAfterSelection={(selectedItem, index) => {
             // text represented after item is selected
@@ -117,6 +75,7 @@ export const NewCustomer = () => {
           style={{ marginTop: 16, width: "75%", alignSelf: "center" }}
           mode="contained"
           onPress={handleSave}
+          disabled={status !== PENDING && status !== INPROGRESS}
         >
           Save
         </Button>

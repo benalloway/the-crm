@@ -1,27 +1,20 @@
 import { View } from "react-native";
-import {
-  useCustomers,
-  useCustomersDispatch,
-} from "../../../context/CustomersContext";
+
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
-import { Card, IconButton, Button, Text } from "react-native-paper";
+import { IconButton, Text } from "react-native-paper";
+import { useViewFields, useDeleteCustomer } from "../hooks";
 
 export const DetailCustomer = () => {
-  const customers = useCustomers();
-  const dispatch = useCustomersDispatch();
   const { params } = useRoute();
   const { navigate, setOptions, goBack } = useNavigation();
 
-  const { name, id, job, region } = customers.find(
-    (customer) => customer.id === params.id
-  );
+  // const { onSubmit } = useDeleteCustomer(params.id);
+  const { fields } = useViewFields(params.id);
+  const { name, job, region, id } = fields;
 
   const handleDelete = () => {
-    dispatch({
-      type: "deleted",
-      id: id,
-    });
+    onSubmit();
     goBack();
   };
 
@@ -31,18 +24,21 @@ export const DetailCustomer = () => {
         <View style={{ flexDirection: "row" }}>
           <IconButton
             icon="pencil"
-            onPress={() => navigate("CustomerEdit", { id: id })}
+            onPress={() => navigate("CustomerEdit", { id: params.id })}
           />
           <IconButton icon="trash-can" iconColor="red" onPress={handleDelete} />
         </View>
       ),
     });
   }, [params]);
+
   return (
     <View
       style={{ justifyContent: "center", alignItems: "center", height: "100%" }}
     >
-      <Text variant="titleLarge" style={{fontSize: 24}}>{name}</Text>
+      <Text variant="titleLarge" style={{ fontSize: 24 }}>
+        {name}
+      </Text>
       <Text variant="bodyLarge">
         <Text style={{ fontWeight: "bold" }}>Position: </Text>
         {job}

@@ -3,17 +3,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { PENDING, INPROGRESS } from "../../utilities/helpers";
 import * as actions from "./reducers";
 
-export const useUpdateFields = (customerID = null) => {
+export const useViewFields = (customerID = null) => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.customer.edit.status);
   const fields = useSelector((state) => state.customer.form.fields);
 
-  console.log(
-    "customer ID ::: ",
-    customerID,
-    status,
-    customerID && status !== INPROGRESS
-  );
+  useEffect(() => {
+    if (customerID && status === PENDING) {
+      dispatch(actions.setForm(customerID));
+    }
+  }, [customerID, status]);
+
+  return {
+    fields,
+    setFormField: (field, value) => {
+      console.log(`Updating field ${field} to ${value}`);
+
+      dispatch(actions.setFormField({ field, value }));
+    },
+  };
+};
+
+export const useUpdateFields = (customerID = null) => {
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.customer.edit.status);
+  const fields = useSelector((state) => state.customer.form.fields);
 
   useEffect(() => {
     if (customerID && status === PENDING) {

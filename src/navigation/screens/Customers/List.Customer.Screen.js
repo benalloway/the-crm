@@ -1,5 +1,5 @@
-import { ListCustomer } from "../../features/Customers/List/List.Customer";
+import { ListCustomer } from  "../../../features/Customers/List/List.Customer";
 
-export default ListCustomerScreen = () => {
+export const ListCustomerScreen = () => {
   return <ListCustomer />;
 };
