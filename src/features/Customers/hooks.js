@@ -64,7 +64,7 @@ export const useEditCustomerStatus = () => {
   return useSelector((state) => state.customer.edit.status);
 };
 
-export const useListCustomers = (region = null) => {
+export const useListCustomers = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{

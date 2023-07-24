@@ -1,4 +1,4 @@
-import { put, select, takeLatest } from 'redux-saga/effects'
+import { put, select, takeLatest, delay } from 'redux-saga/effects'
 import uuid from 'react-native-uuid';
 
 
@@ -14,7 +14,7 @@ export function* takeCreateCustomer() {
     try {
         const fields = yield select(state => state.customer.form.fields)
         const customers = yield select(state => state.customer.list.customers)
-
+        
         const customer = {
             id: uuid.v4(),
             ...fields,
@@ -23,6 +23,8 @@ export function* takeCreateCustomer() {
         const result = [customer, ...customers]
 
         yield set('CUSTOMERS_KEY', result)
+
+        yield delay(500)
 
         yield put(actions.createCustomerResult(result))
     } catch (error) {

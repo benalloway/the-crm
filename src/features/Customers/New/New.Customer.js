@@ -12,7 +12,6 @@ export const NewCustomer = () => {
 
   const handleSave = () => {
     onSubmit();
-    goBack();
   };
 
   return (

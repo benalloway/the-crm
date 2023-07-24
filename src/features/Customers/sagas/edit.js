@@ -1,4 +1,4 @@
-import { put, select, takeLatest } from 'redux-saga/effects'
+import { put, select, takeLatest, delay } from 'redux-saga/effects'
 import * as actions from '../reducers'
 
 import { set } from '../../../utilities/asyncStorage';
@@ -21,6 +21,8 @@ export function* takeEditCustomer(action) {
         })
 
         yield set('CUSTOMERS_KEY', result)
+
+        yield delay(500)
 
         yield put(actions.editCustomerResult(result))
     } catch (error) {

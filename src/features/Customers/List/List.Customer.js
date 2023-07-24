@@ -9,7 +9,8 @@ import { useListCustomers } from "../hooks";
 
 export const ListCustomer = () => {
   const { params } = useRoute();
-  const customers = useListCustomers(params?.region);
+  const customers = useListCustomers();
+  const [state, setState] = useState(customers || []);
   const { navigate, setOptions } = useNavigation();
 
   useEffect(() => {
@@ -24,11 +25,15 @@ export const ListCustomer = () => {
     });
   }, [params]);
 
+  useEffect(() => {
+    setState(customers.filter(c => c.region === params?.region));
+  }, [customers])
+
   return (
     <View style={styles.customersContainer}>
       <FlatList
         contentContainerStyle={{ marginHorizontal: 32 }}
-        data={customers}
+        data={state}
         renderItem={({ item }) => (
           <ListItem
             item={item}

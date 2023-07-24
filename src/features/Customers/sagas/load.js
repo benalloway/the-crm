@@ -1,4 +1,4 @@
-import { all, put, select, delay, takeLatest } from 'redux-saga/effects'
+import { put, delay, takeLatest } from 'redux-saga/effects'
 import * as actions from '../reducers'
 import { get } from '../../../utilities/asyncStorage'
 
@@ -9,6 +9,8 @@ export function* watchLoadCustomers() {
 export function* takeLoadCustomers() {
     try {
         const customers = yield get('CUSTOMERS_KEY')
+
+        yield delay(500)
 
         yield put(actions.loadResult(customers))
     } catch (error) {

@@ -25,7 +25,6 @@ const initialState = {
       name: null,
       job: null,
       region: null,
-      status: null,
     },
   },
   error: {
