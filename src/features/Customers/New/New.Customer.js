@@ -4,15 +4,15 @@ import {
   AVAILABLE_REGIONS,
   useCustomers,
   useCustomersDispatch,
-} from "../../context/CustomersContext";
+} from "../../../context/CustomersContext";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import SelectDropdown from "react-native-select-dropdown";
 
-import styles from "./styles";
+import styles from "../styles";
 import { faker } from "@faker-js/faker";
 
-export const CustomerEdit = () => {
+export const NewCustomer = () => {
   const customers = useCustomers();
   const dispatch = useCustomersDispatch();
   const { params } = useRoute();

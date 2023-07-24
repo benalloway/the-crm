@@ -4,9 +4,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import WelcomeScreen from "../screens/Welcome";
 import RegionsScreen from "../screens/Regions";
-import CustomersScreen from "../screens/Customers";
-import { CustomerDetailScreen } from "../screens/Customers/CustomerDetail";
-import { CustomerEditScreen } from "../screens/Customers/CustomerEdit";
+import { ListCustomerScreen } from "./screens/Customers/List.Customer.Screen";
+import { DetailCustomerScreen } from "./screens/Customers/Detail.Customer.Screen";
+import { EditCustomerScreen } from "./screens/Customers/Edit.Customer.Screen";
+import { NewCustomerScreen } from "./screens/Customers/New.Customer.Screen";
 import { IconButton } from "react-native-paper";
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ const StackScreen = () => {
       />
       <Stack.Screen
         name="CustomerList"
-        component={CustomersScreen}
+        component={ListCustomerScreen}
         options={{
           title: "Customers",
           unmountOnBlur: true,
@@ -40,12 +41,17 @@ const StackScreen = () => {
       />
       <Stack.Screen
         name="CustomerDetail"
-        component={CustomerDetailScreen}
+        component={DetailCustomerScreen}
         options={{ title: "Customer Detail", unmountOnBlur: true }}
       />
       <Stack.Screen
         name="CustomerEdit"
-        component={CustomerEditScreen}
+        component={EditCustomerScreen}
+        options={{ title: "Edit Customer", unmountOnBlur: true }}
+      />
+      <Stack.Screen
+        name="CustomerCreate"
+        component={NewCustomerScreen}
         options={{ title: "Create Customer", unmountOnBlur: true }}
       />
     </Stack.Navigator>
@@ -66,8 +72,6 @@ const Navigation = () => {
               iconName = focused
                 ? "map-marker-multiple"
                 : "map-marker-multiple-outline";
-            } else if (route.name === "CreateCustomer") {
-              iconName = focused ? "account-plus" : "account-plus-outline";
             }
 
             return <IconButton icon={iconName} size={size} iconColor={color} />;

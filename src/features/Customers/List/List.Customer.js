@@ -1,12 +1,12 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { FlatList, Text, View } from "react-native";
-import { CONTACT_STATUSES, useCustomers } from "../../context/CustomersContext";
+import { CONTACT_STATUSES, useCustomers } from "../../../context/CustomersContext";
 import { IconButton, Switch } from "react-native-paper";
 import { useEffect, useState } from "react";
-import styles from "./styles";
-import ListItem from "../../components/ListItem";
+import styles from "../styles";
+import ListItem from "../../../components/ListItem";
 
-export default CustomerList = () => {
+export const ListCustomer = () => {
   const { params } = useRoute();
   const customers = useCustomers();
   const { navigate, setOptions } = useNavigation();
@@ -20,7 +20,7 @@ export default CustomerList = () => {
       headerRight: () => (
         <IconButton
           icon="account-plus-outline"
-          onPress={() => navigate("CustomerEdit", { region: params?.region })}
+          onPress={() => navigate("CustomerCreate", { region: params?.region })}
         />
       ),
     });

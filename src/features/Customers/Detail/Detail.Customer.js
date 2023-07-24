@@ -2,12 +2,12 @@ import { View } from "react-native";
 import {
   useCustomers,
   useCustomersDispatch,
-} from "../../context/CustomersContext";
+} from "../../../context/CustomersContext";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
 import { Card, IconButton, Button, Text } from "react-native-paper";
 
-export const CustomerDetail = () => {
+export const DetailCustomer = () => {
   const customers = useCustomers();
   const dispatch = useCustomersDispatch();
   const { params } = useRoute();
