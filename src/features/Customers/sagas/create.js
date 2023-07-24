@@ -1,5 +1,6 @@
 import { put, select, takeLatest } from 'redux-saga/effects'
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-native-uuid';
+
 
 import * as actions from '../reducers'
 
@@ -13,7 +14,7 @@ export function* takeCreateCustomer() {
         const customers = yield select(state => state.customer.list.customers)
 
         const customer = {
-            id: uuidv4(),
+            id: uuid.v4(),
             ...fields,
         }
 
@@ -21,6 +22,7 @@ export function* takeCreateCustomer() {
 
         yield put(actions.createCustomerResult(result))
     } catch (error) {
+        console.log(error);
         yield put(actions.createCustomerError(error.toString()))
     }
 }
