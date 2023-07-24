@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { useEditCustomer } from "../hooks";
-import { Form } from "../Form/Form";
+import { Form } from "../components/Form";
 
 export const EditCustomer = () => {
   const { params } = useRoute();

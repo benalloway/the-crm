@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { useCreateCustomerStatus, useNewCustomer } from "../hooks";
-import { Form } from "../Form/Form";
+import { Form } from "../components/Form";
 
 export const NewCustomer = () => {
   const { goBack } = useNavigation();
