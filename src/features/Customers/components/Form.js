@@ -4,20 +4,28 @@ import SelectDropdown from "react-native-select-dropdown";
 
 import { useUpdateFields } from "../hooks";
 import Button from "../../../components/Button";
-import { AVAILABLE_REGIONS, PENDING, INPROGRESS } from "../../../utilities/helpers";
+import {
+  AVAILABLE_REGIONS,
+  PENDING,
+  INPROGRESS,
+} from "../../../utilities/helpers";
+
+import styles from "./styles";
 
 export const Form = ({ handleSubmit, status, customerId }) => {
   const { fields, setFormField } = useUpdateFields(customerId);
   const { name, job, region } = fields;
   return (
-    <View style={{ width: "100%", padding: 8 }}>
+    <View style={styles.container}>
       <TextInput
         mode="outlined"
         label="Name"
+        style={styles.textInput}
         value={name}
         onChangeText={(text) => setFormField("name", text)}
       />
       <TextInput
+        style={styles.textInput}
         mode="outlined"
         label="job"
         onChangeText={(text) => setFormField("job", text)}

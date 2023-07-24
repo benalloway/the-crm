@@ -1,11 +1,11 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { FlatList, Text, View } from "react-native";
-import { IconButton, Switch } from "react-native-paper";
+import { FlatList, View } from "react-native";
+import { IconButton } from "react-native-paper";
 import { useEffect, useState } from "react";
-import styles from "../styles";
 import ListItem from "../../../components/ListItem";
 
 import { useListCustomers } from "../hooks";
+import styles from "./styles";
 
 export const ListCustomer = () => {
   const { params } = useRoute();
@@ -26,13 +26,13 @@ export const ListCustomer = () => {
   }, [params]);
 
   useEffect(() => {
-    setState(customers.filter(c => c.region === params?.region));
-  }, [customers])
+    setState(customers.filter((c) => c.region === params?.region));
+  }, [customers]);
 
   return (
-    <View style={styles.customersContainer}>
+    <View style={styles.screenContainer}>
       <FlatList
-        contentContainerStyle={{ marginHorizontal: 32 }}
+        contentContainerStyle={styles.listContentContainer}
         data={state}
         renderItem={({ item }) => (
           <ListItem

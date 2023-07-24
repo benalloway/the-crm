@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { IconButton, Text } from "react-native-paper";
 import { useViewFields } from "../hooks";
 
+import styles from "./styles"
+
 export const DetailCustomer = () => {
   const { params } = useRoute();
   const { navigate, setOptions } = useNavigation();
@@ -15,7 +17,7 @@ export const DetailCustomer = () => {
   useEffect(() => {
     setOptions({
       headerRight: () => (
-        <View style={{ flexDirection: "row" }}>
+        <View style={styles.headerContainer}>
           <IconButton
             icon="pencil"
             onPress={() => navigate("CustomerEdit", { id: params.id })}
@@ -27,17 +29,17 @@ export const DetailCustomer = () => {
 
   return (
     <View
-      style={{ justifyContent: "center", alignItems: "center", height: "100%" }}
+      style={styles.screenContainer}
     >
-      <Text variant="titleLarge" style={{ fontSize: 24 }}>
+      <Text variant="titleLarge" style={styles.title}>
         {name}
       </Text>
       <Text variant="bodyLarge">
-        <Text style={{ fontWeight: "bold" }}>Position: </Text>
+        <Text style={styles.bold}>Position: </Text>
         {job}
       </Text>
       <Text variant="bodyLarge">
-        <Text style={{ fontWeight: "bold" }}>Region: </Text>
+        <Text style={styles.bold}>Region: </Text>
         {region}
       </Text>
     </View>

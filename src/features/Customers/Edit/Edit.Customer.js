@@ -3,6 +3,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { useEditCustomer } from "../hooks";
 import { Form } from "../components/Form";
+import styles from "./styles";
 
 export const EditCustomer = () => {
   const { params } = useRoute();
@@ -15,7 +16,7 @@ export const EditCustomer = () => {
   };
 
   return (
-    <View style={{ alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.screenContainer}>
       <Form handleSubmit={handleSave} customerId={params.id} status={status} />
     </View>
   );

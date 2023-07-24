@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useCreateCustomerStatus, useNewCustomer } from "../hooks";
 import { Form } from "../components/Form";
+import styles from "./styles";
 
 export const NewCustomer = () => {
   const { goBack } = useNavigation();
@@ -15,7 +16,7 @@ export const NewCustomer = () => {
   };
 
   return (
-    <View style={{ alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.screenContainer}>
       <Form handleSubmit={handleSave} customerId={null} status={status} />
     </View>
   );
