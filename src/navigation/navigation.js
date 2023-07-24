@@ -24,7 +24,7 @@ const StackScreen = () => {
           headerRight: () => (
             <IconButton
               icon="account-plus-outline"
-              onPress={() => navigate("CustomerEdit")}
+              onPress={() => navigate("CustomerCreate")}
             />
           ),
           unmountOnBlur: true,

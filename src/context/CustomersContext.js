@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { faker } from "@faker-js/faker";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const CustomersContext = createContext(null);
 
@@ -66,7 +68,7 @@ const seed = () => {
   for(let i = 0; i< 100; i++) {
     initialCustomers.push({
       name: faker.person.fullName(),
-      id: faker.number.int(),
+      id: uuidv4(),
       job: faker.person.jobTitle(),
       region: faker.helpers.arrayElement(Object.values(AVAILABLE_REGIONS)),
     })

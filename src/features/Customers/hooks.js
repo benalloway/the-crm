@@ -4,23 +4,10 @@ import { PENDING, INPROGRESS } from "../../utilities/helpers";
 import * as actions from "./reducers";
 
 export const useViewFields = (customerID = null) => {
-  const dispatch = useDispatch();
-  const status = useSelector((state) => state.customer.edit.status);
-  const fields = useSelector((state) => state.customer.form.fields);
-
-  useEffect(() => {
-    if (customerID && status === PENDING) {
-      dispatch(actions.setForm(customerID));
-    }
-  }, [customerID, status]);
+  const fields = useSelector((state) => state.customer.list.customers.find(x => x.id === customerID));
 
   return {
     fields,
-    setFormField: (field, value) => {
-      console.log(`Updating field ${field} to ${value}`);
-
-      dispatch(actions.setFormField({ field, value }));
-    },
   };
 };
 
@@ -90,6 +77,8 @@ export const useDeleteCustomer = (customerID) => {
   };
 };
 
-export const useListCustomers = () => {
+export const useListCustomers = (region = null) => {
+  if(region) return useSelector((state) => state.customer.list.customers.filter(c => c.region === region));
+
   return useSelector((state) => state.customer.list.customers);
 };

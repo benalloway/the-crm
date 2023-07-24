@@ -9,8 +9,8 @@ export const DetailCustomer = () => {
   const { params } = useRoute();
   const { navigate, setOptions, goBack } = useNavigation();
 
-  // const { onSubmit } = useDeleteCustomer(params.id);
   const { fields } = useViewFields(params.id);
+  const { onSubmit } = useDeleteCustomer(params.id);
   const { name, job, region, id } = fields;
 
   const handleDelete = () => {

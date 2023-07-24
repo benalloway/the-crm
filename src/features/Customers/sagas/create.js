@@ -1,5 +1,5 @@
 import { put, select, takeLatest } from 'redux-saga/effects'
-import { faker } from "@faker-js/faker"
+import { v4 as uuidv4 } from 'uuid';
 
 import * as actions from '../reducers'
 
@@ -13,7 +13,7 @@ export function* takeCreateCustomer() {
         const customers = yield select(state => state.customer.list.customers)
 
         const customer = {
-            id: faker.number.int(),
+            id: uuidv4(),
             ...fields,
         }
 

@@ -9,7 +9,7 @@ import { useListCustomers } from "../hooks";
 
 export const ListCustomer = () => {
   const { params } = useRoute();
-  const customers = useListCustomers();
+  const customers = useListCustomers(params?.region);
   const { navigate, setOptions } = useNavigation();
 
   useEffect(() => {
