@@ -4,7 +4,6 @@ import uuid from 'react-native-uuid';
 
 import * as actions from '../reducers'
 import { set } from '../../../utilities/asyncStorage';
-import { newAnimalNotification } from '../../../utilities/notifications';
 
 export function* watchCreateCustomer() {
     yield takeLatest(actions.createCustomer.toString(), takeCreateCustomer)
