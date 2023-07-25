@@ -89,6 +89,9 @@ const reducers = {
   loadResult: (state, { payload }) => {
     state.list.customers = payload ?? [];
   },
+  clearCustomers: (state, {payload}) => {
+
+  }
 };
 
 export const customerSlice = createSlice({
@@ -108,7 +111,8 @@ export const {
   editCustomerStatus,
   setFormField,
   loadCustomers,
-  loadResult
+  loadResult,
+  clearCustomers
 } = customerSlice.actions;
 
 export default customerSlice.reducer;

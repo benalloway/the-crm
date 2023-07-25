@@ -60,9 +60,21 @@ export const useEditCustomer = (customerID) => {
   };
 };
 
+
 export const useEditCustomerStatus = () => {
   return useSelector((state) => state.customer.edit.status);
 };
+
+export const useClearCustomers = () => {
+  const dispatch = useDispatch();
+  
+  return {
+    onSubmit: () => {
+      console.log("Dispatching CLEAR_CUSTOMERS action");
+      dispatch(actions.clearCustomers());
+    }
+  }
+}
 
 export const useListCustomers = () => {
   const dispatch = useDispatch();
