@@ -38,7 +38,7 @@ const reducers = {
   },
   createCustomerResult: (state, { payload }) => {
     state.create.status = SUCCESS;
-    state.list.customers = payload;
+    state.list.customers = payload ?? [];
     state.form.fields = initialState.form.fields;
     state.create = initialState.create;
   },
@@ -60,7 +60,7 @@ const reducers = {
   },
   editCustomerResult: (state, { payload }) => {
     state.edit.status = SUCCESS;
-    state.list.customers = payload;
+    state.list.customers = payload ?? [];
     state.form.fields = initialState.form.fields;
     state.edit = initialState.edit;
   },
@@ -87,7 +87,7 @@ const reducers = {
     
   },
   loadResult: (state, { payload }) => {
-    state.list.customers = payload;
+    state.list.customers = payload ?? [];
   },
 };
 

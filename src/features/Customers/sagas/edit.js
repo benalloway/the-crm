@@ -2,6 +2,7 @@ import { put, select, takeLatest, delay } from 'redux-saga/effects'
 import * as actions from '../reducers'
 
 import { set } from '../../../utilities/asyncStorage';
+import { CUSTOMERS_KEY } from '../../../utilities/asyncStorage';
 
 export function* watchEditCustomer() {
     yield takeLatest(actions.editCustomer.toString(), takeEditCustomer)
@@ -14,13 +15,13 @@ export function* takeEditCustomer(action) {
         const fields = yield select(state => state.customer.form.fields)
         const customers = yield select(state => state.customer.list.customers)
 
-        const result = customers.map(customer => {
+        const result = customers?.map(customer => {
             if (customer.id !== customerID) return customer
 
             return fields
         })
 
-        yield set('CUSTOMERS_KEY', result)
+        yield set(CUSTOMERS_KEY, result)
 
         yield delay(500)
 

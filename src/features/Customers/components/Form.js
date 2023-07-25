@@ -66,7 +66,7 @@ export const Form = ({ handleSubmit, status, customerId }) => {
 
       <Button
         onPress={handleSubmit}
-        disabled={status !== PENDING && status !== INPROGRESS}
+        disabled={(status !== PENDING && status !== INPROGRESS) || (!name?.trim() || !region?.trim())}
       >
         Save
       </Button>

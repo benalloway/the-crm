@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+export const CUSTOMERS_KEY = 'CUSTOMERS_KEY_v0.0.2';
+
 export const set = async (key, value) => {
   const serialized = JSON.stringify(value);
   return await AsyncStorage.setItem(key, serialized);

@@ -1,7 +1,7 @@
 import { put, select, takeLatest, delay } from 'redux-saga/effects'
 import uuid from 'react-native-uuid';
 
-
+import { CUSTOMERS_KEY } from '../../../utilities/asyncStorage';
 import * as actions from '../reducers'
 import { set } from '../../../utilities/asyncStorage';
 
@@ -12,16 +12,18 @@ export function* watchCreateCustomer() {
 export function* takeCreateCustomer() {
     try {
         const fields = yield select(state => state.customer.form.fields)
-        const customers = yield select(state => state.customer.list.customers)
+        let customers = yield select(state => state.customer.list.customers)
         
         const customer = {
             id: uuid.v4(),
             ...fields,
         }
 
+        if(!customers) customers = []
+
         const result = [customer, ...customers]
 
-        yield set('CUSTOMERS_KEY', result)
+        yield set(CUSTOMERS_KEY, result)
 
         yield delay(500)
 
