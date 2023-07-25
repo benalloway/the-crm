@@ -26,7 +26,7 @@ export const ListCustomer = () => {
   }, [params]);
 
   useEffect(() => {
-    setState(customers.filter((c) => c.region === params?.region));
+    setState(customers?.filter((c) => c.region === params?.region));
   }, [customers]);
 
   return (

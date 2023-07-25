@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { View, Platform, StyleSheet } from "react-native";
 import * as Device from "expo-device";
+import * as Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 
 import Button from "../../components/Button";
@@ -153,7 +154,11 @@ async function registerForPushNotificationsAsync() {
       alert("Failed to get push token for push notification!");
       return;
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
+    token = (
+      await Notifications.getExpoPushTokenAsync({
+        projectId: Constants?.default?.easConfig?.projectId,
+      })
+    ).data;
     console.log(token);
   }
 

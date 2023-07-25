@@ -23,7 +23,7 @@ At the top level the ap has three main screens:
 ## Steps to get project running
 There are two methods of running the app locally; 
 
-#### Method 1 (Recommended!): Build and run on your personal device
+#### Method 1 (Recommended!): Use Expo Go on your personal device
 [Prerequisite] Expo Go App installed on your personal Android or iOS device
 
 - clone project
@@ -35,7 +35,7 @@ There are two methods of running the app locally;
 - Scan QR code on your local machine running the Expo Go Server
 
 
-#### Method 2: Use Emulator (either Android or Iphone)
+#### Method 2: Use Simulator (either Android or Iphone)
 [Prerequisite] Android + IOs simulators setup on local machine
 
 - clone project
